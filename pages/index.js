@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Header from '../components/Header/Header'
 import Nav from '../components/Nav/Nav'
+import requests from '../utils/requests'
+import axios from 'axios';
+import Results from '../components/Results/Results';
 
-export default function Home() {
+export default function Home({results}) {
   return (
     <div>
       <Head>
@@ -14,6 +17,17 @@ export default function Home() {
       <Header></Header>
       {/* Nav */}
       <Nav/>
+      <Results results={results ?? []}/>
     </div>
   )
+}
+
+export const getServerSideProps=async(context)=>{
+  const url='https://api.themoviedb.org/3'+(requests[context.query.genre]?.url ?? requests.fetchTrending.url);
+  const {data}=await axios.get(url);
+  return {
+    props:{
+      results:data.results ?? []
+    }
+  };
 }

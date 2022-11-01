@@ -10,7 +10,7 @@ import { HiOutlineBolt } from "react-icons/hi2";
 import HeaderItem from "./HeaderItem";
 const Header = () => {
   return (
-    <header className="p-5 flex flex-col items-center justify-between sm:flex-row w-screen">
+    <header className="p-5 flex flex-col items-center justify-between sm:flex-row">
       <div className="flex flex-grow justify-evenly max-w-2xl">
         <HeaderItem Icon={HiOutlineHome} title="Home" />
         <HeaderItem Icon={HiOutlineBolt} title="Trending" />
